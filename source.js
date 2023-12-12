@@ -10,6 +10,36 @@ function Gameboard() {
         }
     }
 
+    const updateBoard = (choice, token) => {
+        if(choice == 'ul'&& board[0][0] == '0'){
+            board[0][0] = token;
+        }
+        else if(choice == 'um'&& board[0][1] == '0'){
+            board[0][1] = token;
+        }
+        else if(choice == 'ur'&& board[0][2] == '0'){
+            board[0][2] = token;
+        }
+        else if(choice == 'ml'&& board[1][0] == '0'){
+            board[1][0] = token;
+        }
+        else if(choice == 'mm'&& board[1][1] == '0'){
+            board[1][1] = token;
+        }
+        else if(choice == 'mr'&& board[1][2] == '0'){
+            board[1][2] = token;
+        }
+        else if(choice == 'bl'&& board[2][0] == '0'){
+            board[2][0] = token;
+        }
+        else if(choice == 'bm'&& board[2][1] == '0'){
+            board[2][1] = token;
+        }
+        else if(choice == 'br'&& board[2][2] == '0'){
+            board[2][2] = token;
+        }
+    }
+
     const getBoard = () => board;
 
     const printBoard = () => {
@@ -18,7 +48,7 @@ function Gameboard() {
             console.log(printBoard);
         }
     }
-    return {getBoard, printBoard};
+    return {getBoard, printBoard, updateBoard};
 }
 
 function GameController(
@@ -53,6 +83,7 @@ function GameController(
         board.printBoard();
         console.log(`${getActivePlayer().name}'s turn.`)
         const choice = prompt("Choose a square.");
+        board.updateBoard(choice,getActivePlayer().token);
         switchPlayerTurn();
         printNewRound();
         return choice;
