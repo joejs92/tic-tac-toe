@@ -4,9 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
-    <script src="source.js" defer></script>
+<!--  <script src="source.js" defer></script>-->
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
+    <div class="container">
+        <div class="top">
+            <p>TIC-TAC-TOE</p>
+        </div>
+        <div class="bottom">
+            <div class="left">
+                <div class="left-section">
+                    <p>DISPLAY MESSAGE</p>
+                </div>
+                <div class="left-section">
+                    <div class="board-row">
+                        <button class="board-button">UL</button>
+                        <button class="board-button">UM</button>
+                        <button class="board-button">UR</button>
+                    </div>
+                    <div class="board-row">
+                        <button class="board-button">ML</button>
+                        <button class="board-button">MM</button>
+                        <button class="board-button">MR</button>
+                    </div>
+                    <div class="board-row">
+                        <button class="board-button">BL</button>
+                        <button class="board-button">BM</button>
+                        <button class="board-button">BR</button>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="right-section">
+                    <label for="player1">PLAYER 1 NAME</label><br>
+                    <input type="text" id="player1" name="player1" />
+                </div>
+                <div class="right-section">
+                    <label for="player2">PLAYER 2 NAME</label><br>
+                    <input type="text" id="player2" name="player2" />
+                </div>
+                <div class="right-section">
+                    <button>START</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
