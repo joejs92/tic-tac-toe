@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
-<!--  <script src="source.js" defer></script>-->
+     <script src="source.js" defer></script>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,24 +14,23 @@
         </div>
         <div class="bottom">
             <div class="left">
-                <div class="left-section">
-                    <p>DISPLAY MESSAGE</p>
+                <div class="left-section" id="top-left">
                 </div>
                 <div class="left-section">
                     <div class="board-row">
-                        <button class="board-button">UL</button>
-                        <button class="board-button">UM</button>
-                        <button class="board-button">UR</button>
+                        <button class="board-button" id="ul">T</button>
+                        <button class="board-button" id="um">I</button>
+                        <button class="board-button" id="ur">C</button>
                     </div>
                     <div class="board-row">
-                        <button class="board-button">ML</button>
-                        <button class="board-button">MM</button>
-                        <button class="board-button">MR</button>
+                        <button class="board-button" id="ml">T</button>
+                        <button class="board-button" id="mm">A</button>
+                        <button class="board-button" id="mr">C</button>
                     </div>
                     <div class="board-row">
-                        <button class="board-button">BL</button>
-                        <button class="board-button">BM</button>
-                        <button class="board-button">BR</button>
+                        <button class="board-button" id="bl">T</button>
+                        <button class="board-button" id="bm">O</button>
+                        <button class="board-button" id="br">E</button>
                     </div>
                 </div>
             </div>
@@ -45,7 +44,7 @@
                     <input type="text" id="player2" name="player2" />
                 </div>
                 <div class="right-section">
-                    <button>START</button>
+                    <button id="start">START</button>
                 </div>
             </div>
         </div>

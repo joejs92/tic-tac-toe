@@ -2,7 +2,7 @@ function Gameboard() {
     const rows = 3;
     const columns = 3;
     const board = [];
-
+    
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j=0; j < columns; j++) {
@@ -12,13 +12,13 @@ function Gameboard() {
 
     const getBoard = () => board;
 
-    const printBoard = () => {
+    /*const printBoard = () => {
         for (let i = 0; i < board.length; i++) {
             const printBoard=board[i].join(" ");
             console.log(printBoard);
         }
-    }
-    return {getBoard, printBoard};
+    }*/
+    return {getBoard};
 }
 
 function GameController(
@@ -50,57 +50,79 @@ function GameController(
     const getActivePlayer = () => activePlayer;
 
 
-    const updateBoard = (board, choice, token) => {
-        if(choice == 'ul'&& board[0][0] == '0'){
+    const updateBoard = (board, choice, token,currentValue) => {
+        if(choice == 'ul'&& board[0][0] == '0'&& currentValue == '0'){
             board[0][0] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'um'&& board[0][1] == '0'){
+        else if(choice == 'um'&& board[0][1] == '0'&& currentValue == '0'){
             board[0][1] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'ur'&& board[0][2] == '0'){
+        else if(choice == 'ur'&& board[0][2] == '0'&& currentValue == '0'){
             board[0][2] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'ml'&& board[1][0] == '0'){
+        else if(choice == 'ml'&& board[1][0] == '0'&& currentValue == '0'){
             board[1][0] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'mm'&& board[1][1] == '0'){
+        else if(choice == 'mm'&& board[1][1] == '0'&& currentValue == '0'){
             board[1][1] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'mr'&& board[1][2] == '0'){
+        else if(choice == 'mr'&& board[1][2] == '0'&& currentValue == '0'){
             board[1][2] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'bl'&& board[2][0] == '0'){
+        else if(choice == 'bl'&& board[2][0] == '0'&& currentValue == '0'){
             board[2][0] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'bm'&& board[2][1] == '0'){
+        else if(choice == 'bm'&& board[2][1] == '0'&& currentValue == '0'){
             board[2][1] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
-        else if(choice == 'br'&& board[2][2] == '0'){
+        else if(choice == 'br'&& board[2][2] == '0'&& currentValue == '0'){
             board[2][2] = token;
+            document.getElementById(`${choice}`).textContent = getActivePlayer().token;
+            checkWin(board,getActivePlayer().name,getActivePlayer().token);
         }
         else{
-            console.log("Please make a valid selection.");
             printNewRound();
         }
-        
+        console.log(board);
+        return;
     }
 
     const tieState = () => {
-        board.printBoard();
-        console.log(`Nobody wins!`);
-        const playAgain = prompt("Would you like to play again? (y/n)");
-        if(playAgain == 'y'){
-            GameController();
-        }
+        let container = document.querySelector('#top-left');
+        let message = document.querySelector('#message');
+        message.remove();
+        message = document.createElement('p');
+        message.setAttribute('id','message');
+        container.appendChild(message);
+        message.textContent = "Nobody wins!";
+        return;
     }
 
     const winState = (name) => {
-        board.printBoard();
-        console.log(`${name} wins!`);
-        const playAgain = prompt("Would you like to play again? (y/n)");
-        if(playAgain == 'y'){
-            GameController();
-        }
+        let container = document.querySelector('#top-left');
+        let message = document.querySelector('#message');
+        message.remove();
+        message = document.createElement('p');
+        message.setAttribute('id','message');
+        container.appendChild(message);
+        message.textContent = `${name} wins!`;
+        return;
     }
 
     const checkWin = (board, name, token) => {
@@ -133,20 +155,50 @@ function GameController(
         else{
             winState(name);
         }
+        return;
     }
 
     const printNewRound = () => {
         const win = false;
-        board.printBoard();
-        console.log(`${getActivePlayer().name}'s turn.`)
-        const choice = prompt("Choose a square.");
-        updateBoard(board.getBoard(), choice,getActivePlayer().token);
-        checkWin(board.getBoard(),getActivePlayer().name,getActivePlayer().token);
-        return choice;
+        let container = document.querySelector('#top-left');
+        let message = document.querySelector('#message');
+        message.remove();
+        message = document.createElement('p');
+        message.setAttribute('id','message');
+        container.appendChild(message);
+        message.textContent = `${getActivePlayer().name}'s turn.`;
     }
+    
+    const buttons = document.querySelectorAll('.board-button');
+        buttons.forEach((buttons) => {
+            buttons.addEventListener('click',() => {
+                const choice = buttons.id;
+                const currentValue = document.getElementById(`${choice}`).textContent;
+                updateBoard(board.getBoard(), choice,getActivePlayer().token,currentValue);
+            });
+        });
 
     printNewRound();
 
-    return {getActivePlayer, switchPlayerTurn,printNewRound};
+    return {getActivePlayer, switchPlayerTurn, printNewRound};
 }
-const game = GameController();
+
+
+
+const container = document.querySelector('#top-left');
+const message = document.createElement('p');
+message.setAttribute('id','message');
+container.appendChild(message);
+message.textContent = "Please enter player names, then hit 'start' button.";
+
+const button = document.querySelector('#start');
+button.addEventListener('click',() => {
+    let playerOneName = document.getElementById('player1').value;
+    let playerTwoName = document.getElementById('player2').value;
+    const buttons = document.querySelectorAll('.board-button');
+        buttons.forEach((buttons) => {
+            const choice = buttons.id;
+            document.getElementById(`${choice}`).textContent = '0';
+        });
+    GameController(playerOneName,playerTwoName);
+});
